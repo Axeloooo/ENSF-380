@@ -1,19 +1,19 @@
 package edu.ucalgary.oop;
 
 public class Pet {
-    String name;
-    String species;
-    String breed;
-    String colour;
-    Boolean vaccineStatus = false;
-    Client owner;
-    EmergVet vet;
-    CareProfile care;
+    private final String NAME;
+    private final String SPECIES;
+    private final String BREED;
+    private final String COLOUR;
+    private Boolean vaccineStatus = false;
+    private Client owner;
+    private EmergVet vet;
+    private CareProfile care;
     public Pet(String name, String species, String breed, String colour, Client owner) {
-        this.name = name;
-        this.species = species;
-        this.breed = breed;
-        this.colour = colour;
+        this.NAME = name;
+        this.SPECIES = species;
+        this.BREED = breed;
+        this.COLOUR = colour;
         this.owner = owner;
     }
     public void setVet(EmergVet vet) {
@@ -42,15 +42,15 @@ public class Pet {
         this.owner = updateOwner;
     }
     public String getName() {
-        return this.name;
+        return this.NAME;
     }
     public String getSpecies() {
-        return this.species;
+        return this.SPECIES;
     }
     public String getBreed() {
-        return this.breed;
+        return this.BREED;
     }
     public String getColour() {
-        return this.colour;
+        return this.COLOUR;
     }
 }

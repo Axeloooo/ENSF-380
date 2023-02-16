@@ -1,26 +1,26 @@
 package edu.ucalgary.oop;
 
 public class Booking {
-    private String startDate;
-    private String endDate;
-    private Pet bookedPet;
-    private Employee careGiver;
+    private final String STARTDATE;
+    private final String ENDDATE;
+    private final Pet BOOKEDPET;
+    private final Employee CAREGIVER;
     public Booking(Pet pet, Employee assigned, String startDate, String endDate) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.bookedPet = pet;
-        this.careGiver = assigned;
+        this.STARTDATE = startDate;
+        this.ENDDATE = endDate;
+        this.BOOKEDPET = pet;
+        this.CAREGIVER = assigned;
     }
     public String getStartDate() {
-        return this.startDate;
+        return this.STARTDATE;
     }
     public String getEndDate() {
-        return this.endDate;
+        return this.ENDDATE;
     }
     public Pet getBookedPet() {
-        return this.bookedPet;
+        return this.BOOKEDPET;
     }
     public Employee getCareGiver() {
-        return this.careGiver;
+        return this.CAREGIVER;
     }
 }

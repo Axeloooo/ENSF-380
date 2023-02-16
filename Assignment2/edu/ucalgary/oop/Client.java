@@ -12,7 +12,7 @@ public class Client {
         this.address = address;
     }
     public Boolean enrollRewards(String newNumber) {
-        if (newNumber.matches("-?\\d+(\\.\\d+)?")) {
+        if (newNumber.matches("-?\\d+(\\.\\d+)?") && newNumber.length() == 7) {
             this.rewardsInfo = new RewardsProfile(newNumber);
             return true;
         }

@@ -2,16 +2,16 @@ package edu.ucalgary.oop;
 
 public class Employee {
     private String name;
-    private String idNumber;
+    private final String IDNUMBER;
     private String managerId;
     private Employee[] supervisedEmployees;
     public Employee(String name, String idNumber) {
         this.name = name;
-        this.idNumber = idNumber;
+        this.IDNUMBER = idNumber;
     }
     public Employee(String name, String idNumber, String managerId) {
         this.name = name;
-        this.idNumber = idNumber;
+        this.IDNUMBER = idNumber;
         this.managerId = managerId;
     }
     public String getName() {
@@ -21,7 +21,7 @@ public class Employee {
         this.name = name;
     }
     public String getIDNumber() {
-        return this.idNumber;
+        return this.IDNUMBER;
     }
     public String getManagerId() {
         return this.managerId;

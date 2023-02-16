@@ -4,7 +4,7 @@ public class RewardsProfile {
     private String rewardsNum = "Not enrolled";
     private int pointsTotal = 10;
     public RewardsProfile() throws Exception {
-        throw new Exception("Rewards number required");
+        InvalidRewardsNumException e = new InvalidRewardsNumException();
     }
     public RewardsProfile(String newNumber) {
         this.rewardsNum = newNumber;

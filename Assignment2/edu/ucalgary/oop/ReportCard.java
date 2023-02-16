@@ -1,12 +1,11 @@
 package edu.ucalgary.oop;
 
 public class ReportCard {
-    private Booking report;
+    private final Booking REPORT;
     public ReportCard(Booking reportInfo) {
-        this.report = reportInfo;
+        this.REPORT = reportInfo;
     }
     public String printReport() {
-        String report = this.report.getCareGiver().getName() + "enjoyed taking care of" + this.report.getBookedPet().getName() + ". See you next time!";
-        return report;
+        return this.REPORT.getCareGiver().getName() + " enjoyed taking care of " + this.REPORT.getBookedPet().getName() + ". See you next time!";
     }
 }
