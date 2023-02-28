@@ -26,8 +26,8 @@ public class Employee {
     public String getManagerId() {
         return this.managerId;
     }
-    public void setManagerId(String managerId) {
-        this.managerId = managerId;
+    public void setManagerId(String newManager) {
+        this.managerId = newManager;
     }
     public void addEmployee(Employee newEmployee) {
         if (this.supervisedEmployees == null) {
@@ -35,9 +35,7 @@ public class Employee {
             this.supervisedEmployees[0] = newEmployee;
         } else {
             Employee[] temp = new Employee[this.supervisedEmployees.length + 1];
-            for (int i = 0; i < this.supervisedEmployees.length; i++) {
-                temp[i] = this.supervisedEmployees[i];
-            }
+            System.arraycopy(this.supervisedEmployees, 0, temp, 0, this.supervisedEmployees.length);
             temp[this.supervisedEmployees.length] = newEmployee;
             this.supervisedEmployees = temp;
         }

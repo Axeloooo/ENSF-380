@@ -33,7 +33,7 @@ public class Pet {
         this.care = new CareProfile(meds, medInstr, feedingInstr);
     }
     public String getCareSummary() {
-        return this.care.summarizeCareInstructions();
+        return "Care for " + getName() + ":\n" + care.summarizeCareInstructions();
     }
     public Client getOwner() {
         return this.owner;

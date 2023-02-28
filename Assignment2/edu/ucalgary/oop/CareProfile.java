@@ -11,15 +11,12 @@ public class CareProfile {
         this.feedingInstructions = feeding;
     }
     public String summarizeCareInstructions() {
-        String summary = "";
-        for (int i = 0; i < this.medList.length; i++) {
-            if(i == this.medList.length - 1) {
-                summary += this.medList[i];
-            } else
-            summary += this.medList[i] + ", ";
+        StringBuilder summary = new StringBuilder();
+        for(int i = 0; i < medList.length - 1; i++){
+            summary.append(medList[i]).append(", ");
         }
-        summary += "\n" + this.medInstructions + "\n";
-        summary += "" + this.feedingInstructions;
-        return summary;
+        summary.append(medList[medList.length - 1]);
+        summary.append("\n").append(medInstructions).append("\n").append(feedingInstructions);
+        return summary.toString();
     }
 }

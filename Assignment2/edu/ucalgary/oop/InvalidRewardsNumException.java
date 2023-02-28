@@ -1,7 +1,7 @@
 package edu.ucalgary.oop;
 
-public class InvalidRewardsNumException {
-    public InvalidRewardsNumException() throws Exception{
-        throw new Exception("Invalid Rewards Number");
+public class InvalidRewardsNumException extends Exception{
+    public InvalidRewardsNumException() {
+        super("Invalid rewards number");
     }
 }
