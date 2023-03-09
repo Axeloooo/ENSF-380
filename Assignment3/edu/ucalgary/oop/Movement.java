@@ -1,6 +1,6 @@
 package edu.ucalgary.oop;
 
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class Movement implements Cloneable, FormattedOutput{
     enum Actions {
@@ -14,12 +14,12 @@ public class Movement implements Cloneable, FormattedOutput{
     private final String REGEX = "\"([A-Z]+) - ([A-Z]{1,2})";
     private final Pattern PATTERN = Pattern.compile(REGEX);
     public Movement(String movement) throws IllegalArgumentException {
-        if (PATTERN.matcher(movement).matches()) {
+        Matcher matcher = PATTERN.matcher(movement);
+        if (!matcher.find()) {
             throw new IllegalArgumentException("Invalid movement");
         }
-        String[] split = movement.split(" ");
-        this.action = split[0];
-        this.direction = split[1];
+        this.action = matcher.group(1);
+        this.direction = matcher.group(2);
     }
     public String getAction() {
         return this.action;

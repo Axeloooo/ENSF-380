@@ -1,10 +1,10 @@
 package edu.ucalgary.oop;
 
 import java.time.LocalDate;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class RobotDataLine implements Cloneable {
-    private String dateLine;
+    private String dataLine;
     private String robotID;
     private Sensor sensor;
     private Movement movement;
@@ -15,29 +15,26 @@ public class RobotDataLine implements Cloneable {
     private final Pattern ROBOT_PATTERN = Pattern.compile(ROBOT_REGEX);
 
     public RobotDataLine(String line) throws IllegalArgumentException {
-        String[] parts = line.split(" ");
-        String robotID = parts[0] + " " + parts[1];
-        String[] dateParts = parts[4].split("[\\[\\]]");
-        String dateLine = dateParts[1];
-        String[] actionParts = parts[5].split("\"");
-        String movement = actionParts[1] + " " + parts[7];
-        String[] sensorParts = parts[8].split("[()\"\"]");
-        String sensor = sensorParts[1];
-
-        if (DATE_PATTERN.matcher(dateLine).matches() || ROBOT_PATTERN.matcher(robotID).matches()) {
+        this.dataLine = line;
+        Matcher dateMatcher = DATE_PATTERN.matcher(line);
+        Matcher dateMatcher2 = ROBOT_PATTERN.matcher(line);
+        if (!dateMatcher.find() || !dateMatcher2.find()) {
             throw new IllegalArgumentException("Invalid date or robot ID");
         }
-        this.robotID = robotID;
-        this.dateLine = dateLine;
-        this.sensor = new Sensor(sensor);
-        this.movement = new Movement(movement);
-        this.date = LocalDate.parse(dateLine, java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (Integer.parseInt(dateMatcher.group(1)) > 30 || Integer.parseInt(dateMatcher.group(2)) > 12) {
+            throw new IllegalArgumentException("Invalid date");
+        }
+
+        this.date = LocalDate.of(Integer.parseInt(dateMatcher.group(3)), Integer.parseInt(dateMatcher.group(2)), Integer.parseInt(dateMatcher.group(1)));
+        this.robotID = dateMatcher2.group(1);
+        this.sensor = new Sensor (line.substring(line.indexOf("("), line.indexOf(")") + 1));
+        this.movement = new Movement (line);
     }
     public String getRobotID() {
         return this.robotID;
     }
     public String getDataLine() {
-        return this.robotID + " - - " + this.dateLine + " \""  + this.movement.getAction() + " - " + this.movement.getDirection() + " " + "(" + this.sensor.getSensor() + ")" + " \"";
+        return this.dataLine;
     }
     public Sensor getSensor() {
         return this.sensor;

@@ -1,17 +1,19 @@
 package edu.ucalgary.oop;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sensor implements Cloneable, FormattedOutput{
     private String sensor;
-    private final String REGEX  = "\"([a-z]+)\\)";
+    private final String REGEX = "\\(([a-z]+)\\)";
     private final Pattern PATTERN = Pattern.compile(REGEX);
 
     public Sensor(String sensor) throws IllegalArgumentException {
-        if (PATTERN.matcher(sensor).matches()) {
-            throw new IllegalArgumentException("Invalid sensor");
+        Matcher matcher = PATTERN.matcher(sensor);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("Invalid sensor " + sensor );
         }
-        this.sensor = sensor;
+        this.sensor = matcher.group(1);
     }
     public String getSensor() {
         return this.sensor;
